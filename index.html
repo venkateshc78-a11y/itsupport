@@ -657,6 +657,90 @@
   }
   .whatsapp-open-link:hover { background: #1ebc59; }
 
+  /* ===== Christmas party RSVP dialog ===== */
+  .christmas-dialog {
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 0;
+    width: 420px;
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    font-family: var(--font);
+    color: var(--text);
+  }
+  .christmas-dialog::backdrop {
+    background: rgba(0,0,0,0.55);
+  }
+  .christmas-dialog-form {
+    margin: 0;
+    position: relative;
+  }
+  .christmas-dialog-close {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #000;
+    z-index: 1;
+  }
+  .christmas-dialog-header {
+    background: linear-gradient(135deg, var(--uob-blue) 0%, var(--uob-blue-dark) 100%);
+    color: #000;
+    padding: 1.5rem 1.5rem 1.25rem;
+    text-align: center;
+  }
+  .christmas-dialog-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: rgba(0,0,0,0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.6rem;
+  }
+  .christmas-dialog-header h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.4rem;
+  }
+  .christmas-dialog-details {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  #christmasFormFields {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+  #christmasFormFields .form-row {
+    margin-bottom: 0.9rem;
+  }
+  .christmas-dialog-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-top: 1.1rem;
+  }
+  .christmas-dialog-thanks {
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .christmas-dialog-thanks h3 {
+    color: #1E7A44;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .christmas-dialog-thanks p {
+    margin: 0 0 1.25rem;
+    color: #444a54;
+  }
+
   /* ===== Responsive ===== */
   @media (max-width: 768px) {
     .nav-toggle { display: inline-block; }
@@ -683,6 +767,7 @@
     .form-grid { grid-template-columns: 1fr; }
     .whatsapp-widget { right: 1rem; bottom: 1rem; }
     .whatsapp-panel { bottom: 68px; width: 280px; }
+    .christmas-dialog-actions { flex-direction: column-reverse; align-items: stretch; }
   }
 </style>
 </head>
@@ -992,6 +1077,53 @@
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.412-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.523 0-10 4.477-10 10 0 1.766.464 3.489 1.345 5.003L2 22l5.116-1.334A9.958 9.958 0 0 0 12.004 22c5.523 0 10-4.477 10-10s-4.477-9.997-10-9.997zm0 18.19a8.19 8.19 0 0 1-4.166-1.139l-.299-.177-3.037.792.81-2.96-.194-.304a8.184 8.184 0 0 1-1.284-4.4c0-4.524 3.68-8.203 8.203-8.203 4.524 0 8.203 3.679 8.203 8.203 0 4.524-3.679 8.188-8.236 8.188z"/></svg>
   </button>
 </div>
+
+<!-- ===================== CHRISTMAS PARTY RSVP DIALOG ===================== -->
+<dialog class="christmas-dialog" id="christmasDialog" aria-labelledby="christmasDialogTitle">
+  <form class="christmas-dialog-form" id="christmasForm" novalidate>
+    <button type="button" class="christmas-dialog-close" id="christmasDialogClose" aria-label="Close">&times;</button>
+
+    <div class="christmas-dialog-header">
+      <span class="christmas-dialog-eyebrow">You're invited</span>
+      <h2 id="christmasDialogTitle">Company Christmas Celebration</h2>
+      <p class="christmas-dialog-details" id="christmasDialogDetails"></p>
+    </div>
+
+    <div id="christmasFormFields">
+      <div class="form-row">
+        <label for="christmasName">Full Name <span class="required-mark">*</span></label>
+        <input type="text" id="christmasName" name="christmasName" required>
+      </div>
+      <div class="form-row">
+        <label for="christmasEmail">Email <span class="required-mark">*</span></label>
+        <input type="email" id="christmasEmail" name="christmasEmail" required>
+      </div>
+      <div class="form-row">
+        <label for="christmasDepartment">Department <span class="required-mark">*</span></label>
+        <select id="christmasDepartment" name="christmasDepartment" required>
+          <option value="">Select a department&hellip;</option>
+          <option>Retail Banking</option>
+          <option>Corporate Banking</option>
+          <option>Treasury</option>
+          <option>Risk &amp; Compliance</option>
+          <option>Operations</option>
+          <option>Human Resources</option>
+          <option>Technology</option>
+        </select>
+      </div>
+      <div class="christmas-dialog-actions">
+        <button type="button" class="btn btn-secondary" id="christmasMaybeLater">Maybe later</button>
+        <button type="submit" class="btn btn-primary">Count me in</button>
+      </div>
+    </div>
+
+    <div class="christmas-dialog-thanks" id="christmasThanks" hidden tabindex="-1">
+      <h3>You're on the list!</h3>
+      <p>Thanks, <span id="christmasThanksName"></span> &mdash; see you at the Hilton Hotel.</p>
+      <button type="button" class="btn btn-secondary" id="christmasDoneBtn">Close</button>
+    </div>
+  </form>
+</dialog>
 
 <script>
 (function () {
@@ -1315,6 +1447,83 @@
       closeWaPanel();
     }
   });
+
+  /* ===== JS: Christmas party RSVP dialog ===== */
+  var rsvps = [];
+
+  var christmasDialog = document.getElementById('christmasDialog');
+  var christmasForm = document.getElementById('christmasForm');
+  var christmasDetails = document.getElementById('christmasDialogDetails');
+  var christmasFields = document.getElementById('christmasFormFields');
+  var christmasThanks = document.getElementById('christmasThanks');
+  var christmasThanksName = document.getElementById('christmasThanksName');
+  var christmasName = document.getElementById('christmasName');
+  var christmasEmail = document.getElementById('christmasEmail');
+  var christmasDepartment = document.getElementById('christmasDepartment');
+
+  var WEEKDAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  // "Next Wednesday" relative to whenever the page is actually viewed, so the
+  // invite never shows a stale hardcoded date.
+  function getNextWednesday(fromDate) {
+    var date = new Date(fromDate.getTime());
+    var day = date.getDay();
+    var diff = ((3 - day) + 7) % 7;
+    diff = diff === 0 ? 7 : diff;
+    date.setDate(date.getDate() + diff);
+    return date;
+  }
+
+  function formatEventDate(date) {
+    return WEEKDAY_NAMES[date.getDay()] + ', ' + date.getDate() + ' ' + MONTH_NAMES[date.getMonth()];
+  }
+
+  christmasDetails.textContent = 'Join us at the Hilton Hotel, 8:00 PM on ' + formatEventDate(getNextWednesday(new Date())) + '.';
+
+  function closeChristmasDialog() {
+    christmasDialog.close();
+  }
+
+  document.getElementById('christmasDialogClose').addEventListener('click', closeChristmasDialog);
+  document.getElementById('christmasMaybeLater').addEventListener('click', closeChristmasDialog);
+  document.getElementById('christmasDoneBtn').addEventListener('click', closeChristmasDialog);
+
+  // Close on backdrop click (click landing on the <dialog> element itself, not its content).
+  christmasDialog.addEventListener('click', function (e) {
+    if (e.target === christmasDialog) closeChristmasDialog();
+  });
+
+  christmasForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!christmasForm.reportValidity()) return;
+
+    rsvps.push({
+      name: christmasName.value.trim(),
+      email: christmasEmail.value.trim(),
+      department: christmasDepartment.value,
+      respondedAt: new Date().toISOString()
+    });
+
+    christmasThanksName.textContent = christmasName.value.trim();
+    christmasFields.hidden = true;
+    christmasThanks.hidden = false;
+    christmasThanks.focus();
+  });
+
+  christmasDialog.addEventListener('close', function () {
+    // Reset to the invite view for next time, without wiping anything already RSVP'd.
+    christmasFields.hidden = false;
+    christmasThanks.hidden = true;
+    christmasForm.reset();
+  });
+
+  // Show once, 10 seconds after the page loads.
+  window.setTimeout(function () {
+    if (typeof christmasDialog.showModal === 'function') {
+      christmasDialog.showModal();
+    }
+  }, 10000);
 
 })();
 </script>

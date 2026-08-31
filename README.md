@@ -41,6 +41,19 @@ server required. Open the file directly in a browser (double-click it, or run
   `wa.me` with a pre-filled message.
 
   ![WhatsApp widget](assets/screenshots/whatsapp-widget.png)
+- **Christmas party RSVP dialog**: a native `<dialog>` modal pops up automatically 10
+  seconds after page load, announcing the company Christmas celebration (Hilton Hotel,
+  8:00 PM, computed as the next upcoming Wednesday from whenever the page is viewed)
+  and collecting name, email, and department. Like the ticket form, RSVPs are kept
+  in-memory only — no network call or persistence.
+
+## Testing
+
+[.claude/agents/ticket-form-tester.md](.claude/agents/ticket-form-tester.md) defines a
+project-level Claude Code agent that exercises the ticket form end-to-end with the
+Playwright MCP tools (fills it with sample data, submits, verifies the success panel
+and ticket reference) and writes a JSON record of each run to a git-ignored `logs/`
+folder at the project root.
 
 ## Structure
 
