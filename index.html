@@ -7,10 +7,10 @@
 <style>
   /* ===== Design tokens ===== */
   :root {
-    --uob-blue: #00539B;
-    --uob-blue-dark: #003D73;
+    --uob-blue: #FFC600;
+    --uob-blue-dark: #D9A400;
     --uob-gold: #E8A33D;
-    --text: #2C3038;
+    --text: #000000;
     --bg: #FFFFFF;
     --bg-alt: #F5F7FA;
     --border: #DDE2E8;
@@ -34,7 +34,7 @@
     line-height: 1.55;
   }
   h1, h2, h3 { line-height: 1.2; margin-top: 0; }
-  a { color: var(--uob-blue); }
+  a { color: var(--uob-blue-dark); }
   .container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -57,7 +57,7 @@
     left: -999px;
     top: 0;
     background: var(--uob-blue);
-    color: #fff;
+    color: #000;
     padding: 0.75rem 1rem;
     z-index: 1000;
     border-radius: 0 0 var(--radius) 0;
@@ -72,7 +72,7 @@
     top: 0;
     z-index: 100;
     background: var(--uob-blue);
-    color: #fff;
+    color: #000;
     box-shadow: var(--shadow);
   }
   .navbar {
@@ -86,7 +86,7 @@
   .logo {
     font-weight: 700;
     font-size: 1.15rem;
-    color: #fff;
+    color: #000;
     text-decoration: none;
     letter-spacing: 0.2px;
   }
@@ -98,7 +98,7 @@
     padding: 0;
   }
   .nav-links a {
-    color: #fff;
+    color: #000;
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -107,14 +107,14 @@
   }
   .nav-links a:hover,
   .nav-links a:focus-visible {
-    border-bottom-color: var(--uob-gold);
+    border-bottom-color: #000;
   }
   .nav-toggle {
     display: none;
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.6);
+    border: 1px solid rgba(0,0,0,0.6);
     border-radius: var(--radius);
-    color: #fff;
+    color: #000;
     font-size: 1.4rem;
     line-height: 1;
     padding: 0.35rem 0.65rem;
@@ -124,7 +124,7 @@
   /* ===== Hero ===== */
   .hero {
     background: linear-gradient(135deg, var(--uob-blue) 0%, var(--uob-blue-dark) 100%);
-    color: #fff;
+    color: #000;
     padding: 4rem 0 3.5rem;
     text-align: center;
   }
@@ -134,7 +134,7 @@
   }
   .hero p {
     font-size: 1.1rem;
-    color: #E6EEF7;
+    color: rgba(0,0,0,0.72);
     max-width: 640px;
     margin: 0 auto 2rem;
   }
@@ -159,15 +159,15 @@
   .btn:active { transform: scale(0.98); }
   .btn-primary {
     background: var(--uob-gold);
-    color: var(--uob-blue-dark);
+    color: #000;
   }
   .btn-primary:hover { background: #d6923a; }
   .btn-secondary {
     background: transparent;
-    color: #fff;
-    border-color: #fff;
+    color: #000;
+    border-color: #000;
   }
-  .btn-secondary:hover { background: rgba(255,255,255,0.12); }
+  .btn-secondary:hover { background: rgba(0,0,0,0.08); }
 
   /* ===== Quick-info cards ===== */
   .quick-info {
@@ -197,7 +197,7 @@
   .info-card .info-value {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--uob-blue);
+    color: var(--text);
   }
 
   /* ===== Generic section styling ===== */
@@ -214,7 +214,7 @@
   }
   .section-heading h2 {
     font-size: 1.9rem;
-    color: var(--uob-blue-dark);
+    color: var(--text);
   }
   .section-heading p {
     color: #555b66;
@@ -371,7 +371,7 @@
   }
   .filename-display {
     font-size: 0.85rem;
-    color: var(--uob-blue);
+    color: var(--text);
     margin-top: 0.4rem;
     font-weight: 500;
   }
@@ -411,7 +411,7 @@
     border-radius: var(--radius);
     padding: 0.5rem 1rem;
     margin: 0.75rem 0 1rem;
-    color: var(--uob-blue-dark);
+    color: var(--text);
   }
   .success-details {
     text-align: left;
@@ -470,8 +470,8 @@
     flex-shrink: 0;
     width: 12px;
     height: 12px;
-    border-right: 2px solid var(--uob-blue);
-    border-bottom: 2px solid var(--uob-blue);
+    border-right: 2px solid var(--text);
+    border-bottom: 2px solid var(--text);
     transform: rotate(45deg);
     transition: transform 0.2s ease;
   }
@@ -536,6 +536,127 @@
     color: #7C8798;
   }
 
+  /* ===== WhatsApp chat widget ===== */
+  .whatsapp-widget {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 200;
+    font-family: var(--font);
+  }
+  .whatsapp-fab {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    border: 2px solid #000;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .whatsapp-fab:hover { transform: scale(1.06); }
+  .whatsapp-fab svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
+  }
+  .whatsapp-panel {
+    position: absolute;
+    right: 0;
+    bottom: 74px;
+    width: 300px;
+    max-width: calc(100vw - 2.5rem);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .whatsapp-panel-header {
+    background: var(--uob-blue);
+    color: #000;
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .whatsapp-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .whatsapp-panel-title svg {
+    width: 18px;
+    height: 18px;
+    fill: #000;
+    flex-shrink: 0;
+  }
+  .whatsapp-panel-close {
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    color: #000;
+    padding: 0 0.25rem;
+  }
+  .whatsapp-panel-sub {
+    padding: 0.75rem 1rem 0;
+    font-size: 0.82rem;
+    color: #555b66;
+    margin: 0;
+  }
+  .whatsapp-suggestions {
+    list-style: none;
+    margin: 0;
+    padding: 0.6rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .whatsapp-suggestions a {
+    display: block;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background-color 0.12s ease, border-color 0.12s ease;
+  }
+  .whatsapp-suggestions a:hover,
+  .whatsapp-suggestions a:focus-visible {
+    background: #FFF6E0;
+    border-color: var(--uob-blue);
+  }
+  .whatsapp-open-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.25rem 0.75rem 0.85rem;
+    padding: 0.65rem 0.75rem;
+    background: #25D366;
+    color: #fff;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+  .whatsapp-open-link svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+  }
+  .whatsapp-open-link:hover { background: #1ebc59; }
+
   /* ===== Responsive ===== */
   @media (max-width: 768px) {
     .nav-toggle { display: inline-block; }
@@ -560,6 +681,8 @@
     .ticket-section .section-heading { flex-basis: auto; margin-bottom: 1.5rem; }
     .ticket-form-wrap { flex-basis: auto; overflow: visible; align-items: stretch; }
     .form-grid { grid-template-columns: 1fr; }
+    .whatsapp-widget { right: 1rem; bottom: 1rem; }
+    .whatsapp-panel { bottom: 68px; width: 280px; }
   }
 </style>
 </head>
@@ -841,6 +964,34 @@
     </div>
   </div>
 </footer>
+
+<!-- ===================== WHATSAPP CHAT WIDGET ===================== -->
+<div class="whatsapp-widget" id="whatsappWidget">
+  <div class="whatsapp-panel" id="whatsappPanel" hidden>
+    <div class="whatsapp-panel-header">
+      <span class="whatsapp-panel-title">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.412-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.523 0-10 4.477-10 10 0 1.766.464 3.489 1.345 5.003L2 22l5.116-1.334A9.958 9.958 0 0 0 12.004 22c5.523 0 10-4.477 10-10s-4.477-9.997-10-9.997zm0 18.19a8.19 8.19 0 0 1-4.166-1.139l-.299-.177-3.037.792.81-2.96-.194-.304a8.184 8.184 0 0 1-1.284-4.4c0-4.524 3.68-8.203 8.203-8.203 4.524 0 8.203 3.679 8.203 8.203 0 4.524-3.679 8.188-8.236 8.188z"/></svg>
+        Chat with IT Service Desk
+      </span>
+      <button type="button" class="whatsapp-panel-close" id="whatsappPanelClose" aria-label="Close chat suggestions">&times;</button>
+    </div>
+    <p class="whatsapp-panel-sub">Pick a quick question, or open WhatsApp and type your own.</p>
+    <ul class="whatsapp-suggestions">
+      <li><a href="https://wa.me/6590097583?text=Hi%2C%20I%20need%20help%20resetting%20my%20network%20password." target="_blank" rel="noopener">Reset my password</a></li>
+      <li><a href="https://wa.me/6590097583?text=Hi%2C%20I%20am%20having%20trouble%20connecting%20to%20the%20VPN." target="_blank" rel="noopener">VPN isn't connecting</a></li>
+      <li><a href="https://wa.me/6590097583?text=Hi%2C%20can%20you%20help%20me%20check%20the%20status%20of%20my%20IT%20ticket%3F" target="_blank" rel="noopener">Check my ticket status</a></li>
+      <li><a href="https://wa.me/6590097583?text=Hi%2C%20I%20received%20a%20suspicious%20email%20and%20want%20to%20report%20it." target="_blank" rel="noopener">Report a suspicious email</a></li>
+      <li><a href="https://wa.me/6590097583?text=Hi%2C%20I%20would%20like%20to%20request%20a%20new%20software%20installation." target="_blank" rel="noopener">Request software installation</a></li>
+    </ul>
+    <a class="whatsapp-open-link" href="https://wa.me/6590097583" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.412-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.523 0-10 4.477-10 10 0 1.766.464 3.489 1.345 5.003L2 22l5.116-1.334A9.958 9.958 0 0 0 12.004 22c5.523 0 10-4.477 10-10s-4.477-9.997-10-9.997zm0 18.19a8.19 8.19 0 0 1-4.166-1.139l-.299-.177-3.037.792.81-2.96-.194-.304a8.184 8.184 0 0 1-1.284-4.4c0-4.524 3.68-8.203 8.203-8.203 4.524 0 8.203 3.679 8.203 8.203 0 4.524-3.679 8.188-8.236 8.188z"/></svg>
+      Open WhatsApp chat
+    </a>
+  </div>
+  <button type="button" class="whatsapp-fab" id="whatsappFab" aria-haspopup="true" aria-expanded="false" aria-controls="whatsappPanel" aria-label="Chat with IT Service Desk on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.288.173-1.412-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2.003c-5.523 0-10 4.477-10 10 0 1.766.464 3.489 1.345 5.003L2 22l5.116-1.334A9.958 9.958 0 0 0 12.004 22c5.523 0 10-4.477 10-10s-4.477-9.997-10-9.997zm0 18.19a8.19 8.19 0 0 1-4.166-1.139l-.299-.177-3.037.792.81-2.96-.194-.304a8.184 8.184 0 0 1-1.284-4.4c0-4.524 3.68-8.203 8.203-8.203 4.524 0 8.203 3.679 8.203 8.203 0 4.524-3.679 8.188-8.236 8.188z"/></svg>
+  </button>
+</div>
 
 <script>
 (function () {
@@ -1127,6 +1278,42 @@
     });
 
     faqNoResults.hidden = visibleCount !== 0;
+  });
+
+  /* ===== JS: WhatsApp chat widget ===== */
+  var waWidget = document.getElementById('whatsappWidget');
+  var waFab = document.getElementById('whatsappFab');
+  var waPanel = document.getElementById('whatsappPanel');
+  var waClose = document.getElementById('whatsappPanelClose');
+
+  function closeWaPanel() {
+    waPanel.hidden = true;
+    waFab.setAttribute('aria-expanded', 'false');
+  }
+
+  waFab.addEventListener('click', function () {
+    var willOpen = waPanel.hidden;
+    waPanel.hidden = !willOpen;
+    waFab.setAttribute('aria-expanded', String(willOpen));
+    if (willOpen) waClose.focus();
+  });
+
+  waClose.addEventListener('click', function () {
+    closeWaPanel();
+    waFab.focus();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !waPanel.hidden) {
+      closeWaPanel();
+      waFab.focus();
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!waPanel.hidden && !waWidget.contains(e.target)) {
+      closeWaPanel();
+    }
   });
 
 })();

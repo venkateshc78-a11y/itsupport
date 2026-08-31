@@ -35,6 +35,12 @@ server required. Open the file directly in a browser (double-click it, or run
   common IT support scenarios (password resets, VPN access, hardware issues, etc.).
 
   ![FAQ section](assets/screenshots/faq.png)
+- **WhatsApp chat widget**: a floating button in the bottom-right corner opens a panel
+  of quick-question suggestions (password reset, VPN issue, ticket status, phishing
+  report, software request) plus a general "Open WhatsApp chat" link — each one opens
+  `wa.me` with a pre-filled message.
+
+  ![WhatsApp widget](assets/screenshots/whatsapp-widget.png)
 
 ## Structure
 
