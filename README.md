@@ -9,6 +9,8 @@ United Overseas Bank Limited — see the disclaimer in the page footer.
 
 Live demo: https://venkateshc78-a11y.github.io/itsupport/
 
+![Hero section](assets/screenshots/hero.png)
+
 ## Running it
 
 Everything lives in [index.html](index.html) — no build step, package manager, or
@@ -24,11 +26,15 @@ server required. Open the file directly in a browser (double-click it, or run
   (`UOB-ITSD-YYYYMMDD-####`) and shows the expected SLA response time based on
   priority. Submitted tickets are kept in an in-memory array only — nothing is
   persisted to `localStorage`/`sessionStorage`, and nothing is sent over the network.
+
+  ![Ticket form](assets/screenshots/ticket-form.png)
 - **Credential warning**: the description field is checked against a pattern that
   flags likely credential leaks (e.g. `password: ...`, `otp is ...`) so users are
   warned never to share passwords, OTPs, or card numbers in a ticket.
 - **FAQ**: a live-search box filters 8 accordion-style questions and answers about
   common IT support scenarios (password resets, VPN access, hardware issues, etc.).
+
+  ![FAQ section](assets/screenshots/faq.png)
 
 ## Structure
 

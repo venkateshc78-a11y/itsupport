@@ -49,7 +49,28 @@ confirms a specific match is a false positive.
 Report to the user that the scan ran and passed before moving on, so it's visible this step
 actually happened rather than being silently skipped.
 
-## 3. README
+## 3. Screenshots
+
+Capture current screenshots of the site with the Playwright MCP tools (`mcp__playwright__*`)
+so the README shows what it actually looks like, not stale or invented images.
+
+- The Playwright MCP browser blocks `file:` URLs, so serve the site locally first:
+  `python3 -m http.server <port>` (run in the background) from the repo root, then
+  `mcp__playwright__browser_navigate` to `http://localhost:<port>/`. Stop the server once
+  screenshots are done.
+- `mcp__playwright__browser_resize` to a normal desktop size (e.g. 1440x900) before capturing.
+- Take a full-page screenshot plus one per major section worth showing (e.g. hero, the main
+  form/interactive feature, any distinctive list/detail view) — use `browser_click` on
+  existing in-page nav links to scroll to a section rather than injecting ad-hoc JS, then
+  `mcp__playwright__browser_take_screenshot`.
+- Screenshots save relative to the project root — pass `filename` as
+  `assets/screenshots/<name>.png` directly (create that directory first) so they land where
+  the README will reference them, instead of landing loose in the repo root and needing a move.
+- Add `.playwright-mcp/` to `.gitignore` (create the file if it doesn't exist) — that's where
+  Playwright MCP's own accessibility-snapshot YAML files land, and they're throwaway, not
+  part of the site.
+
+## 4. README
 
 Check whether `README.md` already has real content (not just a placeholder like `# reponame`).
 
@@ -57,10 +78,13 @@ Check whether `README.md` already has real content (not just a placeholder like 
   it, and its structure — based on what's actually in the repo, not invented features. Match
   the style already used in this project's `CLAUDE.md` if one exists.
 - If it already has real content, edit it to stay accurate rather than replacing it wholesale.
+- Embed the screenshots from step 3 with relative Markdown image links
+  (`![Hero section](assets/screenshots/hero.png)`) so they render on GitHub.
 
-## 4. Commit and push
+## 5. Commit and push
 
-- Stage specific files by name (never a blanket `-A`/`.` without reviewing `git status` first).
+- Stage specific files by name (never a blanket `-A`/`.` without reviewing `git status` first) —
+  this includes `README.md`, the new files under `assets/screenshots/`, and `.gitignore`.
 - Commit with a message describing what's being published.
 - Check `gh auth status`. If `gh` isn't installed or isn't authenticated:
   - Prefer a real `gh` install/login if the user can do it interactively.
@@ -74,7 +98,7 @@ Check whether `README.md` already has real content (not just a placeholder like 
   *"refusing to allow an OAuth App to create or update workflow ... without `workflow` scope"*,
   run `gh auth refresh -h github.com -s workflow` (another device-code confirmation) and push again.
 
-## 5. GitHub Pages via GitHub Actions
+## 6. GitHub Pages via GitHub Actions
 
 - Add (or update) `.github/workflows/deploy-pages.yml` using the standard
   `actions/checkout` → `actions/configure-pages` → `actions/upload-pages-artifact` →
@@ -85,13 +109,13 @@ Check whether `README.md` already has real content (not just a placeholder like 
 - Check if Pages is already enabled: `gh api repos/<owner>/<repo>/pages`. If it 404s, create
   it with `gh api --method POST repos/<owner>/<repo>/pages -f build_type=workflow`. If it
   exists but isn't set to `build_type: workflow`, update it.
-- Push the workflow file (same auth/scope handling as step 4).
+- Push the workflow file (same auth/scope handling as step 5).
 - Watch the run to completion: `gh run list --limit 1` then `gh run watch <id> --exit-status`.
   If it fails, read the failing step's logs and fix the workflow rather than reporting success.
 - The resulting Pages URL is `https://<owner>.github.io/<repo>/` (or a custom domain if one
   is already configured) — confirm it from the `gh api repos/<owner>/<repo>/pages` response.
 
-## 6. GitHub About section
+## 7. GitHub About section
 
 Once the Pages URL is live, set the repo's About panel:
 
