@@ -21,10 +21,11 @@
     --shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08);
     --max-width: 1120px;
     --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --header-h: 58px;
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
   body {
     margin: 0;
     font-family: var(--font);
@@ -218,19 +219,66 @@
   .section-heading p {
     color: #555b66;
   }
+  .ticket-section .section-heading h2 {
+    font-size: 1.6rem;
+  }
+  .ticket-section .section-heading p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
 
-  /* ===== Ticket form ===== */
+  /* ===== Ticket form section — 20% heading / 80% form, single screen ===== */
+  .ticket-section {
+    scroll-margin-top: var(--header-h);
+    min-height: calc(100vh - var(--header-h));
+    min-height: calc(100svh - var(--header-h));
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 0;
+  }
+  .ticket-section .container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+  }
+  .ticket-section .section-heading {
+    flex: 0 0 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+  .ticket-form-wrap {
+    flex: 1 1 80%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    overflow: auto;
+  }
   .form-card {
     background: #fff;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 2rem;
-    max-width: 760px;
+    padding: 1.5rem 1.75rem;
+    max-width: 900px;
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
     margin: 0 auto;
   }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1.5rem;
+  }
+  .form-grid .span-2 {
+    grid-column: 1 / -1;
+  }
   .form-row {
-    margin-bottom: 1.4rem;
+    margin-bottom: 0;
+    min-width: 0;
   }
   .form-row label,
   .form-row legend {
@@ -258,7 +306,7 @@
   }
   .form-row textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 64px;
   }
   .form-row input[aria-invalid="true"],
   .form-row select[aria-invalid="true"],
@@ -266,22 +314,22 @@
     border-color: var(--error);
   }
   .help-text {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     color: #6B7280;
-    margin-top: 0.35rem;
+    margin-top: 0.25rem;
   }
   .char-counter {
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     color: #6B7280;
     text-align: right;
-    margin-top: 0.3rem;
+    margin-top: 0.2rem;
   }
   .error-message {
     display: block;
     color: var(--error);
-    font-size: 0.85rem;
-    margin-top: 0.4rem;
-    min-height: 1.1em;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    min-height: 1em;
   }
   fieldset {
     border: none;
@@ -304,9 +352,9 @@
     background: #FFF6E8;
     border: 1px solid var(--uob-gold);
     border-radius: var(--radius);
-    padding: 0.6rem 0.85rem;
-    font-size: 0.85rem;
-    margin-top: 0.75rem;
+    padding: 0.45rem 0.75rem;
+    font-size: 0.78rem;
+    margin-top: 0.5rem;
     color: #6b4c14;
   }
   .checkbox-row {
@@ -332,12 +380,12 @@
     border: 1px solid var(--error);
     color: #7a231a;
     border-radius: var(--radius);
-    padding: 0.7rem 0.9rem;
-    font-size: 0.85rem;
-    margin-top: 0.5rem;
+    padding: 0.55rem 0.8rem;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
   }
   .submit-bar {
-    margin-top: 1.75rem;
+    margin-top: 0.25rem;
   }
 
   /* Success panel */
@@ -508,6 +556,10 @@
     .footer-grid { grid-template-columns: 1fr; gap: 1.75rem; }
     .form-card { padding: 1.25rem; }
     .priority-options { flex-direction: column; gap: 0.6rem; }
+    .ticket-section { min-height: 0; padding: 3rem 0; }
+    .ticket-section .section-heading { flex-basis: auto; margin-bottom: 1.5rem; }
+    .ticket-form-wrap { flex-basis: auto; overflow: visible; align-items: stretch; }
+    .form-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -565,15 +617,17 @@
   </section>
 
   <!-- ===================== TICKET FORM ===================== -->
-  <section id="ticket-form" class="alt-bg" aria-labelledby="ticket-form-heading">
+  <section id="ticket-form" class="alt-bg ticket-section" aria-labelledby="ticket-form-heading">
     <div class="container">
       <div class="section-heading">
         <h2 id="ticket-form-heading">Submit an IT Support Ticket</h2>
         <p>Fill in the details below and our service desk team will get back to you.</p>
       </div>
 
+      <div class="ticket-form-wrap">
       <div class="form-card">
         <form id="ticketForm" novalidate>
+          <div class="form-grid">
 
           <!-- Full Name -->
           <div class="form-row">
@@ -630,21 +684,6 @@
             <span class="error-message" id="category-error" role="alert"></span>
           </div>
 
-          <!-- Priority -->
-          <div class="form-row">
-            <fieldset aria-describedby="priority-error">
-              <legend>Priority <span class="required-mark">*</span></legend>
-              <div class="priority-options">
-                <label><input type="radio" name="priority" value="Low"> Low</label>
-                <label><input type="radio" name="priority" value="Medium"> Medium</label>
-                <label><input type="radio" name="priority" value="High"> High</label>
-                <label><input type="radio" name="priority" value="Critical"> Critical</label>
-              </div>
-              <div class="priority-note">If your issue is <strong>Critical</strong>, please also call the Service Desk Hotline (1800-XXX-XXXX) in addition to submitting this ticket.</div>
-              <span class="error-message" id="priority-error" role="alert"></span>
-            </fieldset>
-          </div>
-
           <!-- Subject -->
           <div class="form-row">
             <label for="subject">Subject <span class="required-mark">*</span></label>
@@ -653,8 +692,23 @@
             <span class="error-message" id="subject-error" role="alert"></span>
           </div>
 
+          <!-- Priority -->
+          <div class="form-row span-2">
+            <fieldset aria-describedby="priority-error">
+              <legend>Priority <span class="required-mark">*</span></legend>
+              <div class="priority-options">
+                <label><input type="radio" name="priority" value="Low"> Low</label>
+                <label><input type="radio" name="priority" value="Medium"> Medium</label>
+                <label><input type="radio" name="priority" value="High" checked> High</label>
+                <label><input type="radio" name="priority" value="Critical"> Critical</label>
+              </div>
+              <div class="priority-note">If your issue is <strong>Critical</strong>, please also call the Service Desk Hotline (1800-XXX-XXXX) in addition to submitting this ticket.</div>
+              <span class="error-message" id="priority-error" role="alert"></span>
+            </fieldset>
+          </div>
+
           <!-- Description -->
-          <div class="form-row">
+          <div class="form-row span-2">
             <label for="description">Description <span class="required-mark">*</span></label>
             <textarea id="description" name="description" aria-describedby="description-counter description-error" required></textarea>
             <div class="char-counter" id="description-counter">0 characters (minimum 20)</div>
@@ -681,8 +735,10 @@
             <span class="error-message" id="confirmAccurate-error" role="alert"></span>
           </div>
 
-          <div class="submit-bar">
+          <div class="submit-bar span-2">
             <button type="submit" class="btn btn-primary">Submit Ticket</button>
+          </div>
+
           </div>
         </form>
 
@@ -699,6 +755,7 @@
           </dl>
           <button type="button" class="btn btn-secondary" id="resetFormBtn" style="color:#1E7A44;border-color:#1E7A44;">Submit another ticket</button>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -921,8 +978,8 @@
     { field: fields.email, run: validateEmail },
     { field: fields.department, run: validateDepartment },
     { field: fields.category, run: validateCategory },
-    { field: form.querySelector('input[name="priority"]'), run: validatePriority },
     { field: fields.subject, run: validateSubject },
+    { field: form.querySelector('input[name="priority"]'), run: validatePriority },
     { field: fields.description, run: validateDescription },
     { field: fields.confirmAccurate, run: validateConfirmAccurate }
   ];
